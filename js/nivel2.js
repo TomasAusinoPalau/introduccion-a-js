@@ -25,7 +25,7 @@
 */
 
 /*
-    Arrays
+    Arrays 
     ======
 
     Un array es una lista ordenada de valores. Podes guardar cualquier cantidad de valores
