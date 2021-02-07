@@ -42,11 +42,8 @@
 // TAREA: Crea tu propio array, llamado comidasFavoritas, y escribi dentro algunas
 //       cosas que te gustan.
 
-
-
-
-
-
+    const comidasFavoritas = ['caviar', 'helado', 'cafe', 'conglomerado']
+    
 
 /*
     Tamaño del Array
@@ -64,9 +61,7 @@
 // TAREA: Verifique cuántos valores tiene en su array comidasFavoritas.
 // imprimi utilizando console.log el resultado.
 
-
-
-
+    // console.log(comidasFavoritas.length);
 
 
 /*
@@ -90,10 +85,10 @@
 
 // TAREA: Obtené el tercer elemento de tu array comidasFavoritas e imprimilo utilizando console.log.
 
+    // Notación de corchetes por índice 0
 
-
-
-
+    // console.log(comidasFavoritas[2]);
+    
 
 /*
     Cambio de Valores en Arrays
@@ -115,23 +110,21 @@
 // TAREA: Toma tu array de comidasFavoritas y reemplaza el primer valor
 // con cualquier otra cosa.
 
-
-
+    comidasFavoritas[0] = 'curiosidad'
+    
 
 
 
 // TAREA: console.log todo el array para verificar.
 
-
-
-
+    // console.log(comidasFavoritas)   
 
 
 // TIP: ¡No te olvides que las posiciones de índice comienzan desde 0!
 
 /*
-    Array.push()
-    ============
+        Array.push()
+        ============
 
     Si deseas agregar nuevos valores a un array existente, podes usar el método
      '.push()'. Push agregará un nuevo valor al final del array.
@@ -145,17 +138,16 @@
 */
 
 // TAREA: Extendamos tu lista de comidasFavoritas y agreguemos un valor más.
+    
 
-
+    comidasFavoritas.push('ciervo')
 
 
 
 
 // TAREA: console.log todo el array para verificar.
 
-
-
-
+  //  console.log(comidasFavoritas)
 
 
 /*
@@ -181,6 +173,10 @@
 
 // TAREA: Intenta crear un array como una constante y modifica los valores que contiene.
 
+const a = [1, 2, 3];
+//console.log(a);
+a[0] = 4; // [4, 2, 3]
+//console.log(a)
 
 
 
@@ -211,7 +207,7 @@
 
     Para esto usamos bucles.
 
-    Cada ciclo debe tener tres cosas principales:
+    Cada iteración debe tener tres cosas principales:
      - un punto de partida
      - una condición (punto final)
      - un contador (un paso)
@@ -247,7 +243,12 @@
 //       diez a uno.
 
 
+    // let number = 10;
 
+    // while (number > 0) {
+    //     console.log(number)
+    //     number--
+    // }
 
 
 
@@ -268,9 +269,27 @@
 
 // TAREA: Imprimí cada 3er número del 3 al 22 usando un 'bucle for'.
 
+     for(i = 3; i <= 22; i += 3) {
+         console.log(i)
+     }
 
 
+//Ejercicio:
 
+// const notaParciales = []; 
+// let totalNotas = 0;
+// let counter;
+
+// for(let i = 0; i <= 2; i++) {
+//     notaParciales.push(Number(prompt(`Ingresá la nota de tus parciales, uno por uno`, " ")))
+
+// }
+
+// for (let i = 0; i < notaParciales.length; i++) {
+//     totalNotas = totalNotas + notaParciales[i];
+// }
+
+// console.log(`El promedio es ${totalNotas / notaParciales.length}`);
 
 
 /*
@@ -323,6 +342,14 @@
     }
 */
 
+for (let i = 10; i >= 0; i = i - 1) {
+    if (i === 5) {
+        console.log('Estamos en el medio!');
+    } else {
+        console.log(i);
+    }
+}
+
 // TAREA: Ha llegado el momento de un ejercicio clásico: 'FizzBuzz'.
 
 // Cuenta del 1 al 50 e imprime los números:
@@ -340,9 +367,50 @@
 // 19% 4 = 3 - en 19 tenemos 4 * 4 + 3, etc.
 
 
+for (let i = 1; i <= 50; i++) {
 
+    if(i % 3 === 0 && i % 5 === 0) {
 
+        console.log("fizzbuzz") 
 
+    } else if (i % 3 === 0) {
+
+        console.log("fizz")
+
+    } else if (i % 5 === 0) {
+
+        console.log("buzz")
+
+    } else {
+
+        console.log(i)
+
+    }
+    
+}
+
+function fizzBuzz() {
+
+    for(let i = 1; i <= 50; i++) {
+
+        let texto = '';
+
+        if(i % 3 === 0) {   
+            texto += "fizz";
+        }
+
+        if (i % 5 === 0) {
+            texto += "buzz"
+        }
+
+        // MDN Boolean
+        console.log(texto || i); // si texto no es verdadero, 
+                                //  se activa el 2do por falta de un true
+    
+    }
+}
+
+fizzBuzz()
 
 //////////////////////////////////////////////////////////////////////////////
 // ¡Felicidades! ¡Has terminado el Nivel 2 de JavaScript Básico!            //
