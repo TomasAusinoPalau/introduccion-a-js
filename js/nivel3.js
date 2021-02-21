@@ -283,9 +283,11 @@ nuestroTitulo.style.fontSize = 15;
 
 
 const nodoImagen = document.createElement('img'); //<img>
-nodoImagen.src = 'img/woman_bw.jpg';
-document.querySelector('header').appendChild(nodoImagen) // se agrega al final
 
+nodoImagen.src = 'img/woman_bw.jpg';
+document.querySelector('header').appendChild(nodoImagen) // se agrega al *final* 
+                                                         // agregar un hijo al nodo padre
+console.log(nodoImagen);
 
 
 ////////////////////////////////////////////////////////////////////////////
