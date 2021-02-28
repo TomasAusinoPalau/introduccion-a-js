@@ -22,20 +22,39 @@ document.querySelector("#siguiente-paso").onclick = function(event) {
     const $numeroIntegrantes = document.querySelector("#cantidad-integrantes");
     const numeroIntegrantes = Number($numeroIntegrantes.value);
     console.log($numeroIntegrantes)
+
+    consultarIntegrantes();
+
     for (let i = 0; i < numeroIntegrantes; i++) {
         generarInputs(i)
-    }
+    }    
+
     document.getElementById("calcular").className = "";
     event.preventDefault();
 }   
 
 
 //  reset
-document.querySelector("#resetear").onclick = function (event) {
+function reset ()  {
+    let $integrante = document.querySelectorAll(".integrante")
 
-    event.preventDefault();
+    for(let i = 0; i < $integrante.length; i++) {
+        $integrante[i].remove()
+
+    }
+
 }
 
+document.querySelector("#resetear").onclick = reset
+
+// borrar inputs anteriores
+function consultarIntegrantes() {
+    let $integrante = document.querySelectorAll(".integrante")
+
+    if($integrante.length > 1) {
+        reset();
+    }
+}
 
 // calcular edades
 document.getElementById("calcular").onclick = function (event) {
@@ -44,6 +63,7 @@ document.getElementById("calcular").onclick = function (event) {
     event.preventDefault();
 }
 
+// generar inputs
 function generarInputs(n) {
     
     let $div = document.createElement("DIV");
@@ -64,10 +84,16 @@ function generarInputs(n) {
     
 }
 
+
+
+
+// calculo
 function edadMayor (n) {
-    let resultado = 0
+    let resultado = n[0];
 
     for (let j = 0; j < n.length; j++) {
+        
+        
 
         if (n[j] > resultado) {
             
@@ -78,7 +104,27 @@ function edadMayor (n) {
 }
 
 function edadMenor (n) {
+    let resultado = n[0];
+
+    for (let j = 0; j < n.length; j++) {
+
+        if (n[j] < resultado) {
+            
+            resultado = n[j]
+        }
+    }
+    return resultado
     
+}
+
+function edadPromedio (n) {
+    resultado = 0;
+    
+    for (let j = 0; j < n.length; j++) {
+        resultado += n[j];
+    }
+
+    return (resultado / n.length)
 }
 
 function calculoEdades () {
@@ -88,6 +134,9 @@ function calculoEdades () {
 
     let edades = []
     for (let i = 0; i < $edades.length; i++) {
+        if($edades[i].value === "") {
+            continue;
+        }
         edades.push(Number($edades[i].value))
     }
 
