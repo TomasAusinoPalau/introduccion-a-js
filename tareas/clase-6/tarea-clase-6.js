@@ -40,9 +40,9 @@ function reset ()  {
 
     for(let i = 0; i < $integrante.length; i++) {
         $integrante[i].remove()
-
     }
 
+    document.querySelector("#analisis").className = "oculto";
 }
 
 document.querySelector("#resetear").onclick = reset
