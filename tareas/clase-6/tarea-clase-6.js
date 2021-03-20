@@ -22,7 +22,7 @@ document.querySelector("#siguiente-paso").onclick = function(event) {
     const $numeroIntegrantes = document.querySelector("#cantidad-integrantes");
     const numeroIntegrantes = Number($numeroIntegrantes.value);
 
-   if (validarInputs(numeroIntegrantes)) {
+   if (erroresInput(numeroIntegrantes)) {
         throw new Error("Stopping #siguiente-paso function");
    }
 
@@ -35,21 +35,6 @@ document.querySelector("#siguiente-paso").onclick = function(event) {
     document.getElementById("calcular").className = "";
     event.preventDefault();
 }   
-
-//verificación inputs 
-function validarInputs(numeroIntegrantes) {
-    
-    const errorNumeroIntegrantes = validarCantidadIntegrantes(numeroIntegrantes);
-    
-    const errores = [errorNumeroIntegrantes];
-    
-    manejarErrores(errores);
-
-    return errores[0].length
-    
-}
-
-//verificación de edades
 
 //  reset
 function reset ()  {
@@ -75,6 +60,8 @@ function consultarIntegrantes() {
 
 // calcular edades
 document.getElementById("calcular").onclick = function (event) {
+
+
     calculoEdades();
 
     event.preventDefault();
@@ -156,7 +143,9 @@ function calculoEdades () {
         edades.push(Number($edades[i].value))
     }
 
-    validarEdades(edades)
+    if (erroresEdades(edades)) {
+        throw new Error("Stopping #siguiente-paso function");
+    }
 
     document.querySelector("#mayor-edad").innerText = edadMayor(edades);
     document.querySelector("#menor-edad").innerText = edadMenor(edades);
@@ -178,23 +167,52 @@ function validarCantidadIntegrantes (numeroIntegrantes) {
 
 function validarEdades (edades) {
     
+    let result = ""
+
     for (let i = 0; i <= edades.length; i++) {
 
-        if (edades[i] <= 0) {
-            return `La edad del integrante ${i+1} tiene que ser mayor a 0`;
 
-        } else if (!Number.isInteger(edades[i])) {
-            return `La edad del integrante ${i+1} tiene que ser un número entero`;
+            if (edades[i] <= 0) {
+                result = `La edad del integrante ${i+1} tiene que ser mayor a 0`;
+    
+            } else if (!Number.isInteger(edades[i])) {
+                result =`La edad del integrante ${i+1} tiene que ser un número entero`;
+    
+            } else if (!/[0-9]+/.test(edades[i])) {
+                result = `La edad del integrante ${i+1} tiene que ser solo números`;
+            }
 
-        } else if (/[0-9]+/.test(edades[i])) {
-            return `La edad del integrante ${i+1} tiene que ser solo números`;
 
-        } else {
-            return ""
-        }
+
     }
+    return result
 }
 
+//verificación inputs 
+function erroresInput(numeroIntegrantes) {
+    
+    const errorNumeroIntegrantes = validarCantidadIntegrantes(numeroIntegrantes);
+    
+    const errores = [errorNumeroIntegrantes];
+    
+    manejarErrores(errores);
+
+    return errores[0].length
+    
+}
+
+//verificación de edades
+
+function erroresEdades(edades) {
+    
+    const errorNumeroEdades = validarEdades(edades);
+
+    const errores = [errorNumeroEdades];
+
+    manejarErrores(errores);
+
+    return errores[0].length
+}
 
 
 // error
