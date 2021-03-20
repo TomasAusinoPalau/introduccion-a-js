@@ -21,7 +21,10 @@ Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como
 document.querySelector("#siguiente-paso").onclick = function(event) {
     const $numeroIntegrantes = document.querySelector("#cantidad-integrantes");
     const numeroIntegrantes = Number($numeroIntegrantes.value);
-    console.log($numeroIntegrantes)
+
+   if (validarInputs(numeroIntegrantes)) {
+        throw new Error("Stopping #siguiente-paso function");
+   }
 
     consultarIntegrantes();
 
@@ -33,6 +36,20 @@ document.querySelector("#siguiente-paso").onclick = function(event) {
     event.preventDefault();
 }   
 
+//verificación inputs 
+function validarInputs(numeroIntegrantes) {
+    
+    const errorNumeroIntegrantes = validarCantidadIntegrantes(numeroIntegrantes);
+    
+    const errores = [errorNumeroIntegrantes];
+    
+    manejarErrores(errores);
+
+    return errores[0].length
+    
+}
+
+//verificación de edades
 
 //  reset
 function reset ()  {
@@ -130,7 +147,6 @@ function edadPromedio (n) {
 function calculoEdades () {
     document.querySelector("#analisis").className = "";
     const $edades = document.querySelectorAll(".edad");
-    console.log($edades[0].value)
 
     let edades = []
     for (let i = 0; i < $edades.length; i++) {
@@ -139,6 +155,8 @@ function calculoEdades () {
         }
         edades.push(Number($edades[i].value))
     }
+
+    validarEdades(edades)
 
     document.querySelector("#mayor-edad").innerText = edadMayor(edades);
     document.querySelector("#menor-edad").innerText = edadMenor(edades);
@@ -154,7 +172,40 @@ function validarCantidadIntegrantes (numeroIntegrantes) {
         return "El número de integrantes tiene que ser un número entero"
     } else if (numeroIntegrantes >= 50) {
         return "El número de integrantes no puede ser mayor a 50"
+    } else return "" 
+}
+
+
+function validarEdades (edades) {
+    
+    for (let i = 0; i <= edades.length; i++) {
+
+        if (edades[i] <= 0) {
+            return `La edad del integrante ${i+1} tiene que ser mayor a 0`;
+
+        } else if (!Number.isInteger(edades[i])) {
+            return `La edad del integrante ${i+1} tiene que ser un número entero`;
+
+        } else if (/[0-9]+/.test(edades[i])) {
+            return `La edad del integrante ${i+1} tiene que ser solo números`;
+
+        } else {
+            return ""
+        }
     }
 }
 
 
+
+// error
+
+function manejarErrores(errores) {
+    const $form = document.formulario;
+    let errorIntegrantes = errores[0];
+
+    if (errorIntegrantes.length > 0) {
+        document.querySelector("#cantidad-integrantes").className = "error"
+    } else {
+        document.querySelector("#cantidad-integrantes").className = ""
+    }
+}
