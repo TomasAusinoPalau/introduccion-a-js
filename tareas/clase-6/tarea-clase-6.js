@@ -145,4 +145,16 @@ function calculoEdades () {
     document.querySelector("#promedio-edad").innerText = edadPromedio(edades);
 }
 
+// validaciones
+
+function validarCantidadIntegrantes (numeroIntegrantes) {
+    if (numeroIntegrantes <= 0) {
+        return "El número de integrantes debe ser mayor a 0"
+    } else if (!Number.isInteger(numeroIntegrantes)) {
+        return "El número de integrantes tiene que ser un número entero"
+    } else if (numeroIntegrantes >= 50) {
+        return "El número de integrantes no puede ser mayor a 50"
+    }
+}
+
 
