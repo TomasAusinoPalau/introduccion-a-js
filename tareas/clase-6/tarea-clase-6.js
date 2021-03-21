@@ -169,7 +169,7 @@ function validarEdades (edades) {
     
     let result = ""
 
-    for (let i = 0; i <= edades.length; i++) {
+    for (let i = 0; i < edades.length; i++) {
 
 
             if (edades[i] <= 0) {
