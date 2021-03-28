@@ -203,11 +203,11 @@ function erroresInput(numeroIntegrantes) {
 
 //verificación de edades
 
-function erroresEdades(edades) {
+const errorEdades = function(edades) {
     
     const errorNumeroEdades = validarEdades(edades);
 
-    const errores = [errorNumeroEdades];
+    const errores = ["", errorNumeroEdades];
 
     manejarErrores(errores);
 
@@ -220,10 +220,17 @@ function erroresEdades(edades) {
 function manejarErrores(errores) {
     const $form = document.formulario;
     let errorIntegrantes = errores[0];
+    let errorEdades = errores[1];
 
     if (errorIntegrantes.length > 0) {
         document.querySelector("#cantidad-integrantes").className = "error"
     } else {
         document.querySelector("#cantidad-integrantes").className = ""
+    }
+
+    if (errorEdades.length > 0) {
+        document.querySelectorAll("#edad").className = "error"
+    } else {
+        document.querySelectorAll("#edad").className = ""
     }
 }
