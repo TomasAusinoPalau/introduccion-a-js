@@ -1,0 +1,32 @@
+{
+  "name": "introduccion-a",
+  "version": "1.0.0",
+  "description": "Primeros pasos con js de r/argentinaprograma",
+  "main": "\u001b[A\u001bindex.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "test",
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomasAusinoPalau/introduccion-a-js.git"
+  },
+  "keywords": [
+    "calculador",
+    "basico"
+  ],
+  "author": "none",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TomasAusinoPalau/introduccion-a-js/issues"
+  },
+  "homepage": "https://github.com/TomasAusinoPalau/introduccion-a-js#readme",
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "cypress": "^7.2.0"
+  },
+  "devDependencies": {}
+}

@@ -5,29 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <title>Clase 6</title>
 </head>
     <body>
-    <form id="calculador-edades" name="formulario">
-        
-        <label for="cantidad-integrantes">Cantidad de integrantes</label>    
-        <input type="number" id="cantidad-integrantes">
-        <button type="submit"id="siguiente-paso">Siguiente</button>
+    <form id="calculador-edades" name="formulario" class="container">
+        <div class="form-group justify-content-md-center">
 
-        <div id="integrantes">
+            <label for="cantidad-integrantes" id="label-cantidad" class="col-lg-2 alert alert-primary">Cantidad de integrantes</label>    
+            <input type="number" id="cantidad-integrantes" class="form-control col-lg-2 d-inline">
+            <button type="submit"id="siguiente-paso" class="btn btn-primary">Siguiente</button>
+        </div>
+            
+        <div id="integrantes" class="form-gorup">
             
         </div>
 
         <button type="button" id="calcular" class="oculto">Calcular edades</button>
 
-        <div id="analisis" class="oculto">
+        <div id="analisis" class="oculto" class="form-group">
             <p>La edad mayor es: <strong id="mayor-edad"></strong></p>
             <p>La edad menor es: <strong id="menor-edad"></strong></p>
             <p>El promedio es: <strong id="promedio-edad"></strong></p>
         </div>
         
 
-        <button type="reset" id="resetear">Resetear</button>
+        <button type="reset" id="resetear" class="btn btn-warning">Resetear</button>
     </form>
 
 

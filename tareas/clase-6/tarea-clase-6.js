@@ -32,7 +32,7 @@ document.querySelector("#siguiente-paso").onclick = function(event) {
         generarInputs(i)
     }    
 
-    document.getElementById("calcular").className = "";
+    document.getElementById("calcular").className = "btn btn-primary";
     event.preventDefault();
 }   
 
@@ -45,6 +45,7 @@ function reset ()  {
     }
 
     document.querySelector("#analisis").className = "oculto";
+    document.getElementById("calcular").className = "oculto";
 }
 
 document.querySelector("#resetear").onclick = reset
@@ -143,7 +144,7 @@ function calculoEdades () {
         edades.push(Number($edades[i].value))
     }
 
-    if (erroresEdades(edades)) {
+    if (errorEdades(edades)) {
         throw new Error("Stopping #siguiente-paso function");
     }
 
@@ -175,11 +176,11 @@ function validarEdades (edades) {
             if (edades[i] <= 0) {
                 result = `La edad del integrante ${i+1} tiene que ser mayor a 0`;
     
+            }  else if (!/[0-9]+/.test(edades[i])) {
+                result = `La edad del integrante ${i+1} tiene que ser solo números`;
             } else if (!Number.isInteger(edades[i])) {
                 result =`La edad del integrante ${i+1} tiene que ser un número entero`;
     
-            } else if (!/[0-9]+/.test(edades[i])) {
-                result = `La edad del integrante ${i+1} tiene que ser solo números`;
             }
 
 
@@ -211,7 +212,7 @@ const errorEdades = function(edades) {
 
     manejarErrores(errores);
 
-    return errores[0].length
+    return errores[1].length
 }
 
 
@@ -228,7 +229,9 @@ function manejarErrores(errores) {
         document.querySelector("#cantidad-integrantes").className = ""
     }
 
-    if (errorEdades.length > 0) {
+    if (errorEdades === undefined) {
+
+    } else if (errorEdades.length > 0) {
         document.querySelectorAll("#edad").className = "error"
     } else {
         document.querySelectorAll("#edad").className = ""
